@@ -9,17 +9,18 @@
 *
 *  char *  serverIP = argv[1]; 
 *  unsigned short  serverPort = atoi(argv[2]);
-*  uint  averageRate = atoi(argv[3]);
-*  uint  bucketSize = atoi(argv[4]);
-*  uint  tokenSize = atoi(argv[5]);
-*  uint  messageSize = atoi(argv[6]);
-*  uint  mode = atoi(argv[7]);
+*  uint  timeLimit = atoi(argv[3]);
+*  uint  averageRate = atoi(argv[4]);
+*  uint  bucketSize = atoi(argv[5]);
+*  uint  tokenSize = atoi(argv[6]);
+*  uint  messageSize = atoi(argv[7]);
+*  uint  mode = atoi(argv[8]);
 *          0: RTT mode
 *         
 *  uint  numberIterations = atoi(argv[8]);
 *  uint  debugFlag = atoi(argv[9]);  //used to set debugLevel
 *
-*    fprintf(stderr, "perfClient(v%s): <Server IP> <Server Port> [<Average Rate>] "
+*    fprintf(stderr, "perfClient(v%s): <Server IP> <Server Port> [<Time Limit(s)>] [<Average Rate>] "
 *                    "[<Bucket Size>] [<Token Size>] [<Message Size>] "
 *                    "[<Mode (RTT = 0, One-way = 1)>] [<# of iterations>] "
 *                    "[<Debug Flag (default : 129)>]\n", Version);
@@ -55,7 +56,7 @@ long maxPing = 0;
 long avgPing = 0;
 
 uint16_t mode = PING_MODE;
-uint16_t messageSize = 1472;
+uint16_t messageSize = 1000;
 unsigned int messageCount = 0;
 unsigned int totalMessageCount = 0;
 unsigned int  seqNumberTimed = 1;
@@ -210,8 +211,8 @@ int main(int argc, char *argv[])
   unsigned int RxSeqNumber = 1;
   unsigned int averageRate = 1000000;
   unsigned int tokenSize = 1000;
-  unsigned int bucketSize = 1000;
-  unsigned int numberIterations = 0;
+  unsigned int bucketSize = 10000;
+  unsigned int numberIterations = 1;
   int bucket = 0;
   double tokenAddInterval=0;
   double RTTSample = 0.0;
@@ -249,7 +250,7 @@ int main(int argc, char *argv[])
 
   if (argc < 3) /* Test for min number arguments */
   {
-    fprintf(stderr, "perfClient(v%s): <Server IP> <Server Port> [<Average Rate>] "
+    fprintf(stderr, "perfClient(v%s): <Server IP> <Server Port> [<Time Limit(s)>] [<Average Rate>] "
                     "[<Bucket Size>] [<Token Size>] [<Message Size>] "
                     "[<Mode (RTT = 0, One-way = 1)>] [<# of iterations>] "
                     "[<Debug Flag (default : 129)>]\n", Version);
@@ -267,31 +268,31 @@ int main(int argc, char *argv[])
   serverPort = atoi(argv[2]);
 
   // get info from parameters if specified:
-  if (argc >= 4)
-    averageRate = atoi(argv[3]);
+	if (argc >= 4)
+		timeLimit = atoi(argv[3]) * 1000000;
 
   if (argc >= 5)
-    bucketSize = atoi(argv[4]);
+    averageRate = atoi(argv[4]);
 
   if (argc >= 6)
-    tokenSize = atoi(argv[5]);
+    bucketSize = atoi(argv[5]);
 
-  if (argc >= 7) {
-    messageSize = atoi(argv[6]);
+  if (argc >= 7)
+    tokenSize = atoi(argv[6]);
+
+  if (argc >= 8) {
+    messageSize = atoi(argv[7]);
     if (messageSize < MESSAGEMIN || messageSize > MESSAGEMAX) {
       printf("perfClient: HARD ERROR Message Size must be between %d and %d bytes\n", MESSAGEMIN, MESSAGEMAX);
       exit(1);
     }
   }
 
-  if (argc >= 8)
-    mode = atoi(argv[7]);
-
   if (argc >= 9)
-    numberIterations = atoi(argv[8]);
+    mode = atoi(argv[8]);
 
-	if (argc >= 10)
-		timeLimit = atoi(argv[9]) * 1000000;
+  if (argc >= 10)
+    numberIterations = atoi(argv[9]);
 
   if (numberIterations == 0)
     numberIterations = UINT_MAX;
@@ -316,8 +317,9 @@ int main(int argc, char *argv[])
 
 
   if (debugLevel > 0) {
-    printf("perfClient: %s:%d averageRate:%d, bSize:%d, tSize:%d, msgSize:%d, mode:%d, numberIterations:%d, tokenInterval:%2.6f (debugLevel:%d) \n",
+    printf("perfClient: %s:%d timeLimit:%d, averageRate:%d, bSize:%d, tSize:%d, msgSize:%d, mode:%d, numberIterations:%d, tokenInterval:%2.6f (debugLevel:%d) \n",
        serverIP, serverPort,
+       timeLimit,
        averageRate, bucketSize, tokenSize, messageSize, 
        mode, numberIterations,
        tokenAddInterval/1000000, debugLevel);
