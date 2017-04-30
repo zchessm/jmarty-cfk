@@ -5,14 +5,9 @@ $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazei
 mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
-$query = "SELECT *,
-			CAST(AES_DECRYPT(IP, '.$salt.') AS VARCHAR(10000)) test,
-			AES_DECRYPT(Time, '.$salt.'),
-			AES_DECRYPT(RTTMin, '.$salt.'),
-			AES_DECRYPT(RTTMax, '.$salt.'),
-			AES_DECRYPT(RTTAverage, '.$salt.'),
-			AES_DECRYPT(ID, '.$salt.')
-			FROM Iterations";
+$query = "SELECT *, 
+CAST(AES_DECRYPT(IP, '.$salt.') AS VARCHAR(10000))
+FROM Iterations";
 $result = mysqli_query($connection, $query);
 
 
@@ -23,18 +18,12 @@ echo "\t<tr>\n \t\t<td>IP</td>\t\t<td>Time</td>\t\t<td>RTTMin</td>\t\t<td>RTTMax
 
 while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    echo "\t<tr>\n";
-	//echo "\t\t<td>" . $line['IP_clear'] . "</td>\n";
-   //echo "\t\t<td>" . $line['Time_clear'] . "</td>\n";
-	//echo "\t\t<td>" . $line['RTTMin_clear'] . "</td>\n";
-	//echo "\t\t<td>" . $line['RTTMax_clear'] . "</td>\n";
-	//echo "\t\t<td>" . $line['RTTAvg_clear'] . "</td>\n";
-	//echo "\t\t<td>" . $line['ID_clear'] . "</td>\n";
-	echo "\t\t<td>" . $line['test'] . "</td>\n";
-   echo "\t\t<td>" . $line['Time'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTMin'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTMax'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTAverage'] . "</td>\n";
-	echo "\t\t<td>" . $line['ID'] . "</td>\n";
+	echo "\t\t<td>" . $line['IP_clear'] . "</td>\n";
+   echo "\t\t<td>" . $line['Time_clear'] . "</td>\n";
+	echo "\t\t<td>" . $line['RTTMin_clear'] . "</td>\n";
+	echo "\t\t<td>" . $line['RTTMax_clear'] . "</td>\n";
+	echo "\t\t<td>" . $line['RTTAvg_clear'] . "</td>\n";
+	echo "\t\t<td>" . $line['ID_clear'] . "</td>\n";
    echo "\t</tr>\n";
 }
 
