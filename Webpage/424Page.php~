@@ -13,7 +13,7 @@ AES_DECRYPT('RTTMax', 'b0t@t0') AS RTTMax,
 AES_DECRYPT('RTTAverage', 'b0t@t0') AS RTTAverage,
 AES_DECRYPT('ID', 'b0t@t0') AS ID
 FROM Iterations";
-$result = mysqli_query($connection, $query) or die($lopQuery."<br/><br/>".mysql_error());
+$result = mysqli_query($connection, $query) or die($result."<br/><br/>".mysql_error());
 
 
 // Printing results in HTML
