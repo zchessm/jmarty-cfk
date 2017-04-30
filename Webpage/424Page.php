@@ -23,12 +23,12 @@ echo "\t<tr>\n \t\t<td>IP</td>\t\t<td>Time</td>\t\t<td>RTTMin</td>\t\t<td>RTTMax
 
 while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    echo "\t<tr>\n";
-	echo "\t\t<td>" . $line['IP'] . "</td>\n";
-   echo "\t\t<td>" . $line['Time'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTMin'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTMax'] . "</td>\n";
-	echo "\t\t<td>" . $line['RTTAverage'] . "</td>\n";
-	echo "\t\t<td>" . $line['ID'] . "</td>\n";
+	echo "\t\t<td>" . $line[0] . "</td>\n";
+   echo "\t\t<td>" . $line[1] . "</td>\n";
+	echo "\t\t<td>" . $line[2] . "</td>\n";
+	echo "\t\t<td>" . $line[3] . "</td>\n";
+	echo "\t\t<td>" . $line[4] . "</td>\n";
+	echo "\t\t<td>" . $line[5] . "</td>\n";
    echo "\t</tr>\n";
 }
 

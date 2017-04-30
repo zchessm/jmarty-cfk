@@ -5,13 +5,13 @@ $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazei
 mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
-$query = "SELECT *,
-AES_DECRYPT('IP', 'b0t@t0') AS IP,
-AES_DECRYPT('Time', 'b0t@t0') AS Time,
-AES_DECRYPT('RTTMin', 'b0t@t0') AS RTTMin,
-AES_DECRYPT('RTTMax', 'b0t@t0') AS RTTMax,
-AES_DECRYPT('RTTAverage', 'b0t@t0') AS RTTAverage,
-AES_DECRYPT('ID', 'b0t@t0') AS ID
+$query = "SELECT
+AES_DECRYPT('IP', 'b0t@t0'),
+AES_DECRYPT('Time', 'b0t@t0'),
+AES_DECRYPT('RTTMin', 'b0t@t0'),
+AES_DECRYPT('RTTMax', 'b0t@t0'),
+AES_DECRYPT('RTTAverage', 'b0t@t0'),
+AES_DECRYPT('ID', 'b0t@t0')
 FROM Iterations";
 $result = mysqli_query($connection, $query) or die($result."<br/><br/>".mysql_error());
 
