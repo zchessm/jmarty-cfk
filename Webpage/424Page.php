@@ -5,14 +5,7 @@ $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazei
 mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
-$query = "SELECT *, 
-AES_DECRYPT(IP, '.$salt.') AS IP_clear,
-AES_DECRYPT(Time, '.$salt.') AS Time_clear,
-AES_DECRYPT(RTTMin, '.$salt.') AS RTTMin_clear,
-AES_DECRYPT(RTTMax, '.$salt.') AS RTTMax_clear,
-AES_DECRYPT(RTTAverage, '.$salt.') AS RTTAvg_clear,
-AES_DECRYPT(ID, '.$salt.') AS ID_clear
-FROM Iterations";
+$query = "SELECT *, AES_DECRYPT(IP, '.$salt.') AS IP_clear, AES_DECRYPT(Time, '.$salt.') AS Time_clear, AES_DECRYPT(RTTMin, '.$salt.') AS RTTMin_clear, AES_DECRYPT(RTTMax, '.$salt.') AS RTTMax_clear, AES_DECRYPT(RTTAverage, '.$salt.') AS RTTAvg_clear, AES_DECRYPT(ID, '.$salt.') AS ID_clear FROM Iterations";
 $result = mysqli_query($connection, $query);
 
 
