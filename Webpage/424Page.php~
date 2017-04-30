@@ -22,7 +22,8 @@ echo "<table>\n";
 echo "\t<tr>\n \t\t<td>IP</td>\t\t<td>Time</td>\t\t<td>RTTMin</td>\t\t<td>RTTMax</td>\t\t<td>RTTAverage</td>\t\t<td>ID</td>\n";
 
 while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-   echo "\t<tr>\n";
+	echo "THIS IS THE RESULT: " .$line;   
+	echo "\t<tr>\n";
 	echo "\t\t<td>" . $line[0] . "</td>\n";
    echo "\t\t<td>" . $line[1] . "</td>\n";
 	echo "\t\t<td>" . $line[2] . "</td>\n";
