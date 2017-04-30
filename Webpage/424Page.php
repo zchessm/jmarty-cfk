@@ -29,8 +29,6 @@ while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	//echo "\t\t<td>" . $line['RTTMax_clear'] . "</td>\n";
 	//echo "\t\t<td>" . $line['RTTAvg_clear'] . "</td>\n";
 	//echo "\t\t<td>" . $line['ID_clear'] . "</td>\n";
-	echo "\t</tr>\n"
-	echo "\t<tr>\n"
 	echo "\t\t<td>" . $line['IP_clear'] . "</td>\n";
    echo "\t\t<td>" . $line['Time'] . "</td>\n";
 	echo "\t\t<td>" . $line['RTTMin'] . "</td>\n";
