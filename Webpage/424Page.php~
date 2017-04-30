@@ -5,7 +5,7 @@ $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazei
 mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
-$query = "SELECT *
+$query = "SELECT
 AES_DECRYPT('IP', 'b0t@t0'),
 AES_DECRYPT('Time', 'b0t@t0'),
 AES_DECRYPT('RTTMin', 'b0t@t0'),
