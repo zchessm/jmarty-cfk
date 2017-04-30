@@ -5,8 +5,7 @@ $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazei
 mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
-$query = "SELECT *, 
-CAST(AES_DECRYPT(IP, '.$salt.') AS VARCHAR(10000)) test
+$query = "SELECT * 
 FROM Iterations";
 $result = mysqli_query($connection, $query);
 
@@ -18,7 +17,7 @@ echo "\t<tr>\n \t\t<td>IP</td>\t\t<td>Time</td>\t\t<td>RTTMin</td>\t\t<td>RTTMax
 
 while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    echo "\t<tr>\n";
-	echo "\t\t<td>" . $line['test'] . "</td>\n";
+	echo "\t\t<td>" . $line['IP'] . "</td>\n";
    echo "\t\t<td>" . $line['Time_clear'] . "</td>\n";
 	echo "\t\t<td>" . $line['RTTMin_clear'] . "</td>\n";
 	echo "\t\t<td>" . $line['RTTMax_clear'] . "</td>\n";
