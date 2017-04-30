@@ -6,14 +6,14 @@ mysqli_select_db($connection, 'ssadatabase');
 $salt = 'b0t@t0';
 
 $query = "SELECT *,
-CAST(AES_DECRYPT('IP', 'b0t@t0')AS VARCHAR(10000)) AS IP,
-CAST(AES_DECRYPT('Time', 'b0t@t0')AS VARCHAR(10000)) AS Time,
-CAST(AES_DECRYPT('RTTMin', 'b0t@t0')AS VARCHAR(10000)) AS RTTMin,
-CAST(AES_DECRYPT('RTTMax', 'b0t@t0')AS VARCHAR(10000)) AS RTTMax,
-CAST(AES_DECRYPT('RTTAverage', 'b0t@t0')AS VARCHAR(10000)) AS RTTAverage,
-CAST(AES_DECRYPT('ID', 'b0t@t0') AS ID
+AES_DECRYPT('IP', 'b0t@t0') AS IP,
+AES_DECRYPT('Time', 'b0t@t0') AS Time,
+AES_DECRYPT('RTTMin', 'b0t@t0') AS RTTMin,
+AES_DECRYPT('RTTMax', 'b0t@t0') AS RTTMax,
+AES_DECRYPT('RTTAverage', 'b0t@t0') AS RTTAverage,
+AES_DECRYPT('ID', 'b0t@t0') AS ID
 FROM Iterations";
-$result = mysqli_query($connection, $query);
+$result = mysqli_query($connection, $query) or die($result."<br/><br/>".mysql_error());
 
 
 // Printing results in HTML
