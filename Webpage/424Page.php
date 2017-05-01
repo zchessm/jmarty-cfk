@@ -6,11 +6,6 @@ if(!isset ($_SESSION['username'])) {
 }
 
 
-//DB Connect
-
-$connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazeit');
-mysqli_select_db($connection, 'ssadatabase');
-
 $query = "SELECT * FROM Iterations";
 $result = mysqli_query($connection, $query);
 

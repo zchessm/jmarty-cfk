@@ -8,9 +8,6 @@ if(!isset ($_SESSION['username'])) {
 
 //DB Connect
 
-$connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazeit');
-mysqli_select_db($connection, 'ssadatabase');
-
 $query = "SELECT * FROM Iterations";
 $result = mysqli_query($connection, $query);
 
@@ -28,9 +25,5 @@ while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 }
 
 echo "</table>\n";
-
-mysqli_free_result($result);
-
-mysqli_close($connection);
 
 ?>
