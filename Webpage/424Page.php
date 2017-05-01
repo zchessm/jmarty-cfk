@@ -1,5 +1,13 @@
 <?php
+
+
+if(!isset ($_SESSION['username'])) {
+		echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php\">";
+}
+
+
 //DB Connect
+
 $connection = mysqli_connect('mysql1.cs.clemson.edu','khattle','420noscopeblazeit');
 mysqli_select_db($connection, 'ssadatabase');
 
