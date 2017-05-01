@@ -1,9 +1,9 @@
 <?php
 
 
-if(!isset ($_SESSION['username'])) {
+/*if(!isset ($_SESSION['username'])) {
 		echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php\">";
-}
+}*/
 
 
 $query = "SELECT * FROM Iterations";
