@@ -2,10 +2,6 @@
 	session_start();
 	include_once "function.php";
 
-?>
-
-
-<?php
 
 
 /*if(!isset ($_SESSION['username'])) {
