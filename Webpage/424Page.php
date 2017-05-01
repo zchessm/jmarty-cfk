@@ -1,6 +1,7 @@
 <?php
 if(!isset ($_SESSION['username'])) {
-		echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php\">";
+		header('Location: login.php');
+		exit;
 }
 
 	session_start();
