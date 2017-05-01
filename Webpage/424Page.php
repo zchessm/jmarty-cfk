@@ -1,13 +1,11 @@
 <?php
+	session_start();
+	include_once "function.php";
+
 if(!isset ($_SESSION['username'])) {
 		header('Location: login.php');
 		exit;
 }
-
-	session_start();
-	include_once "function.php";
-
-
 
 $query = "SELECT * FROM Iterations";
 $result = mysql_query($query);
