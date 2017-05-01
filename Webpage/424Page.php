@@ -29,8 +29,4 @@ while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 echo "</table>\n";
 
-mysqli_free_result($result);
-
-mysqli_close($connection);
-
 ?>
