@@ -1,12 +1,11 @@
 <?php
-	session_start();
-	include_once "function.php";
-
-
-
 if(!isset ($_SESSION['username'])) {
 		echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php\">";
 }
+
+	session_start();
+	include_once "function.php";
+
 
 
 $query = "SELECT * FROM Iterations";
